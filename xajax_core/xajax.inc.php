@@ -56,6 +56,10 @@ if (!defined ('XAJAX_PROCESSING_EVENT_INVALID')) define ('XAJAX_PROCESSING_EVENT
 	adjusted to effect the behavior of the xajax class as well as the client-side
 	javascript.
 */
+
+/**
+ * Class xajax
+ */
 final class xajax
 {
 	/*
@@ -69,7 +73,7 @@ final class xajax
 		wish to track, however, settings are available via a reference to the <xajax> 
 		object using <xajax->getConfiguration>.
 	*/
-	private $aSettings = array();
+	private $aSettings = [];
 
 	/*
 		Boolean: bErrorHandler
@@ -167,7 +171,12 @@ final class xajax
 			for calls back to the server.  If empty, xajax fills in the current
 			URI that initiated this request.
 	*/
-	public function __construct($sRequestURI=null, $sLanguage=null)
+    /**
+     * xajax constructor.
+     * @param null $sRequestURI
+     * @param null $sLanguage
+     */
+    public function __construct($sRequestURI=null, $sLanguage=null)
 	{
 		$this->bErrorHandler = false;
 		$this->aProcessingEvents = array();
@@ -179,7 +188,7 @@ final class xajax
 		
 		// The default configuration settings.
 		$this->configureMany(
-			array(
+			[
 				'characterEncoding' => XAJAX_DEFAULT_CHAR_ENCODING,
 				'decodeUTF8Input' => false,
 				'outputEntities' => false,
@@ -202,7 +211,7 @@ final class xajax
 				'logFile' => '',
 				'timeout' => 6000,
 				'version' => $this->getVersion()
-				)
+            ]
 			);
 
 		if (null !== $sRequestURI)
@@ -220,7 +229,10 @@ final class xajax
 	/*
 		Function: __sleep
 	*/
-	public function __sleep()
+    /**
+     * @return array
+     */
+    public function __sleep()
 	{
 		$aMembers = get_class_vars(get_class($this));
 		
@@ -563,7 +575,7 @@ final class xajax
 
 		This function may exit, if a request is processed.  See <xajax->bAllowExit>
 	*/
-	public function processRequest()
+	public function processRequest($aResult)
 	{
 		if (isset($_SERVER['HTTP_CHALLENGE_RESPONSE']))
 			$this->challengeResponse = $_SERVER['HTTP_CHALLENGE_RESPONSE'];

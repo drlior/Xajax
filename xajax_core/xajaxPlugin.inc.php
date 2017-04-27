@@ -23,6 +23,10 @@
 	
 	The base class for all xajax plugins.
 */
+
+/**
+ * Class xajaxPlugin
+ */
 class xajaxPlugin
 {
 }

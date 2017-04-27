@@ -10,6 +10,10 @@
 	
 	$sFile - (stirng):  The file to be compressed.
 */
+/**
+ * @param $sFile
+ * @return mixed|string
+ */
 function xajaxCompressFile($sFile)
 {
 	//remove windows cariage returns

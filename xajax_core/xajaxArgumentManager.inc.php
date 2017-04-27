@@ -31,6 +31,10 @@ if (!defined('XAJAX_METHOD_POST')) define('XAJAX_METHOD_POST', 2);
 	will be processed.  During a xajax request, any arguments found in the
 	GET or POST will be converted to a PHP array.
 */
+
+/**
+ * Class xajaxArgumentManager
+ */
 final class xajaxArgumentManager
 {
 	/*

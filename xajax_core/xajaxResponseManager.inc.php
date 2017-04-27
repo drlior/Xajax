@@ -26,6 +26,10 @@
 	of contact for working with <xajaxResponse> objects as well as 
 	<xajaxCustomResponse> objects.
 */
+
+/**
+ * Class xajaxResponseManager
+ */
 final class xajaxResponseManager
 {
 	/*

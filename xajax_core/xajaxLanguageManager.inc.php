@@ -27,6 +27,10 @@
 	debug and error messages upon request; as well as the code used to load alternate
 	language text as requested via the <xajax::configure> function.
 */
+
+/**
+ * Class xajaxLanguageManager
+ */
 final class xajaxLanguageManager
 {
 	/*
