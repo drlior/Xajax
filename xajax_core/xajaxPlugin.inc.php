@@ -45,71 +45,73 @@ class xajaxPlugin
 	plugin will detect the signature generated previously and process the request
 	accordingly.
 */
+
 class xajaxRequestPlugin extends xajaxPlugin
 {
-	/*
-		Function: configure
-		
-		Called by the <xajaxPluginManager> when a configuration setting is changing.
-		Plugins should store a local copy of the settings they wish to use during 
-		registration, client script generation or request processing.
-	*/
-	function configure($sName, $mValue)
-	{
-	}
-	
-	/*
-		Function: register
-		
-		Called by the <xajaxPluginManager> when a user script when a function, event 
-		or callable object is to be registered.  Additional plugins may support other 
-		registration types.
-	*/
-	function register($aArgs)
-	{
-		return false;
-	}
+    /*
+        Function: configure
+        
+        Called by the <xajaxPluginManager> when a configuration setting is changing.
+        Plugins should store a local copy of the settings they wish to use during 
+        registration, client script generation or request processing.
+    */
+    function configure($sName, $mValue)
+    {
+    }
 
-	function generateHash()
-	{}
+    /*
+        Function: register
+        
+        Called by the <xajaxPluginManager> when a user script when a function, event 
+        or callable object is to be registered.  Additional plugins may support other 
+        registration types.
+    */
+    function register($aArgs)
+    {
+        return false;
+    }
 
-	/*
-		Function: generateClientScript
-		
-		Called by <xajaxPluginManager> when the page's HTML is being sent to the browser.
-		This allows each plugin to inject some script / style or other appropriate tags
-		into the HEAD of the document.  Each block must be appropriately enclosed, meaning
-		javascript code must be enclosed in SCRIPT and /SCRIPT tags.
-	*/
-	function generateClientScript()
-	{
-	}
-	
-	/*
-		Function: canProcessRequest
-		
-		Called by the <xajaxPluginManager> when a request has been received to determine
-		if the request is for a xajax enabled function or for the initial page load.
-	*/
-	function canProcessRequest()
-	{
-		return false;
-	}
-	
-	/*
-		Function: processRequest
-		
-		Called by the <xajaxPluginManager> when a request is being processed.  This 
-		will only occur when <xajax> has determined that the current request is a valid
-		(registered) xajax enabled function via <xajax->canProcessRequest>.
-		
-		Returns:
-			false
-	*/
-	function processRequest()
-	{
-		return false;
-	}
+    function generateHash()
+    {
+    }
+
+    /*
+        Function: generateClientScript
+        
+        Called by <xajaxPluginManager> when the page's HTML is being sent to the browser.
+        This allows each plugin to inject some script / style or other appropriate tags
+        into the HEAD of the document.  Each block must be appropriately enclosed, meaning
+        javascript code must be enclosed in SCRIPT and /SCRIPT tags.
+    */
+    function generateClientScript()
+    {
+    }
+
+    /*
+        Function: canProcessRequest
+        
+        Called by the <xajaxPluginManager> when a request has been received to determine
+        if the request is for a xajax enabled function or for the initial page load.
+    */
+    function canProcessRequest()
+    {
+        return false;
+    }
+
+    /*
+        Function: processRequest
+        
+        Called by the <xajaxPluginManager> when a request is being processed.  This 
+        will only occur when <xajax> has determined that the current request is a valid
+        (registered) xajax enabled function via <xajax->canProcessRequest>.
+        
+        Returns:
+            false
+    */
+    function processRequest()
+    {
+        return false;
+    }
 }
 
 /*
@@ -122,77 +124,78 @@ class xajaxRequestPlugin extends xajaxPlugin
 	client.  In addition, a response command may send javascript to the browser
 	at page load to aid in the processing of it's response commands.
 */
+
 class xajaxResponsePlugin extends xajaxPlugin
 {
-	/*
-		Object: objResponse
-		
-		A reference to the current <xajaxResponse> object that is being used
-		to build the response that will be sent to the client browser.
-	*/
-	var $objResponse;
-	
-	/*
-		Function: setResponse
-		
-		Called by the <xajaxResponse> object that is currently being used
-		to build the response that will be sent to the client browser.
-		
-		Parameters:
-		
-		objResponse - (object):  A reference to the <xajaxResponse> object
-	*/
-	function setResponse($objResponse)
-	{
-		$this->objResponse = $objResponse;
-	}
-	
-	/*
-		Function: addCommand
-		
-		Used internally to add a command to the response command list.  This
-		will call <xajaxResponse->addPluginCommand> using the reference provided
-		in <xajaxResponsePlugin->setResponse>.
-	*/
- 	function addCommand($aAttributes, $sData)
- 	{
- 		$this->objResponse->addPluginCommand($this, $aAttributes, $sData);
- 	}
-	
-	/*
-		Function: getName
-		
-		Called by the <xajaxPluginManager> when the user script requests a plugin.
-		This name must match the plugin name requested in the called to 
-		<xajaxResponse->plugin>.
-	*/
-	function getName()
-	{
+    /*
+        Object: objResponse
+        
+        A reference to the current <xajaxResponse> object that is being used
+        to build the response that will be sent to the client browser.
+    */
+    var $objResponse;
+
+    /*
+        Function: setResponse
+        
+        Called by the <xajaxResponse> object that is currently being used
+        to build the response that will be sent to the client browser.
+        
+        Parameters:
+        
+        objResponse - (object):  A reference to the <xajaxResponse> object
+    */
+    function setResponse($objResponse)
+    {
+        $this->objResponse = $objResponse;
+    }
+
+    /*
+        Function: addCommand
+        
+        Used internally to add a command to the response command list.  This
+        will call <xajaxResponse->addPluginCommand> using the reference provided
+        in <xajaxResponsePlugin->setResponse>.
+    */
+    function addCommand($aAttributes, $sData)
+    {
+        $this->objResponse->addPluginCommand($this, $aAttributes, $sData);
+    }
+
+    /*
+        Function: getName
+        
+        Called by the <xajaxPluginManager> when the user script requests a plugin.
+        This name must match the plugin name requested in the called to 
+        <xajaxResponse->plugin>.
+    */
+    function getName()
+    {
 //SkipDebug
-		$objLanguageManager = xajaxLanguageManager::getInstance();
-		trigger_error(
-			$objLanguageManager->getText('XJXPLG:GNERR:01')
-			, E_USER_ERROR
-			);
+        $objLanguageManager = xajaxLanguageManager::getInstance();
+        trigger_error(
+            $objLanguageManager->getText('XJXPLG:GNERR:01')
+            , E_USER_ERROR
+        );
 //EndSkipDebug
-	}
-	
-	/*
-		Function: process
-		
-		Called by <xajaxResponse> when a user script requests the service of a
-		response plugin.  The parameters provided by the user will be used to
-		determine which response command and parameters will be sent to the
-		client upon completion of the xajax request process.
-	*/
-	function process()
-	{
+    }
+
+    /*
+        Function: process
+        
+        Called by <xajaxResponse> when a user script requests the service of a
+        response plugin.  The parameters provided by the user will be used to
+        determine which response command and parameters will be sent to the
+        client upon completion of the xajax request process.
+    */
+    function process()
+    {
 //SkipDebug
-		$objLanguageManager = xajaxLanguageManager::getInstance();
-		trigger_error(
-			$objLanguageManager->getText('XJXPLG:PERR:01')
-			, E_USER_ERROR
-			);
+        $objLanguageManager = xajaxLanguageManager::getInstance();
+        trigger_error(
+            $objLanguageManager->getText('XJXPLG:PERR:01')
+            , E_USER_ERROR
+        );
 //EndSkipDebug
-	}
+    }
 }

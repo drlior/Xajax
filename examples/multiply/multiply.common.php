@@ -26,10 +26,10 @@
 	@license http://www.xajaxproject.org/bsd_license.txt BSD License
 */
 
-require_once ("../../xajax_core/xajax.inc.php");
+require_once("../../xajax_core/xajax.inc.php");
 
 $xajax = new xajax("multiply.server.php");
-$xajax->configure('javascript URI','../../');
+$xajax->configure('javascript URI', '../../');
 $xajax->configure('debug', true);
-$xajax->register(XAJAX_FUNCTION,"multiply");
+$xajax->register(XAJAX_FUNCTION, "multiply");
 ?>

@@ -23,7 +23,7 @@
 		Specifies that the item being registered via the <xajax->register> function is a
 		object who's methods will be callable from the browser.
 */
-if (!defined ('XAJAX_CALLABLE_OBJECT')) define ('XAJAX_CALLABLE_OBJECT', 'callable object');
+if (!defined('XAJAX_CALLABLE_OBJECT')) define('XAJAX_CALLABLE_OBJECT', 'callable object');
 
 //SkipAIO
 require dirname(__FILE__) . '/support/xajaxCallableObject.inc.php';
@@ -32,180 +32,174 @@ require dirname(__FILE__) . '/support/xajaxCallableObject.inc.php';
 /*
 	Class: xajaxCallableObjectPlugin
 */
+
 final class xajaxCallableObjectPlugin extends xajaxRequestPlugin
 {
-	/*
-		Array: aCallableObjects
-	*/
-	private $aCallableObjects;
+    /*
+        Array: aCallableObjects
+    */
+    private $aCallableObjects;
 
-	/*
-		String: sXajaxPrefix
-	*/
-	private $sXajaxPrefix;
-	
-	/*
-		String: sDefer
-	*/
-	private $sDefer;
-	
-	private $bDeferScriptGeneration;
+    /*
+        String: sXajaxPrefix
+    */
+    private $sXajaxPrefix;
 
-	/*
-		String: sRequestedClass
-	*/
-	private $sRequestedClass;
-	
-	/*
-		String: sRequestedMethod
-	*/
-	private $sRequestedMethod;
+    /*
+        String: sDefer
+    */
+    private $sDefer;
 
-	/*
-		Function: xajaxCallableObjectPlugin
-	*/
-	public function __construct()
-	{
-		$this->aCallableObjects = array();
+    private $bDeferScriptGeneration;
 
-		$this->sXajaxPrefix = 'xajax_';
-		$this->sDefer = '';
-		$this->bDeferScriptGeneration = false;
+    /*
+        String: sRequestedClass
+    */
+    private $sRequestedClass;
 
-		$this->sRequestedClass = NULL;
-		$this->sRequestedMethod = NULL;
+    /*
+        String: sRequestedMethod
+    */
+    private $sRequestedMethod;
 
-		if (!empty($_GET['xjxcls'])) $this->sRequestedClass = $_GET['xjxcls'];
-		if (!empty($_GET['xjxmthd'])) $this->sRequestedMethod = $_GET['xjxmthd'];
-		if (!empty($_POST['xjxcls'])) $this->sRequestedClass = $_POST['xjxcls'];
-		if (!empty($_POST['xjxmthd'])) $this->sRequestedMethod = $_POST['xjxmthd'];
-	}
+    /*
+        Function: xajaxCallableObjectPlugin
+    */
+    public function __construct()
+    {
+        $this->aCallableObjects = array();
 
-	/*
-		Function: configure
-	*/
-	public function configure($sName, $mValue)
-	{
-		if ('wrapperPrefix' == $sName) {
-			$this->sXajaxPrefix = $mValue;
-		} else if ('scriptDefferal' == $sName) {
-			if (true === $mValue) $this->sDefer = 'defer ';
-			else $this->sDefer = '';
-		} else if ('deferScriptGeneration' == $sName) {
-			if (true === $mValue || false === $mValue)
-				$this->bDeferScriptGeneration = $mValue;
-			else if ('deferred' === $mValue)
-				$this->bDeferScriptGeneration = $mValue;
-		}
-	}
+        $this->sXajaxPrefix = 'xajax_';
+        $this->sDefer = '';
+        $this->bDeferScriptGeneration = false;
 
-	/*
-		Function: register
-	*/
-	public function register($aArgs)
-	{
-		if (1 < count($aArgs))
-		{
-			$sType = $aArgs[0];
+        $this->sRequestedClass = NULL;
+        $this->sRequestedMethod = NULL;
 
-			if (XAJAX_CALLABLE_OBJECT == $sType)
-			{
-				$xco = $aArgs[1];
+        if (!empty($_GET['xjxcls'])) $this->sRequestedClass = $_GET['xjxcls'];
+        if (!empty($_GET['xjxmthd'])) $this->sRequestedMethod = $_GET['xjxmthd'];
+        if (!empty($_POST['xjxcls'])) $this->sRequestedClass = $_POST['xjxcls'];
+        if (!empty($_POST['xjxmthd'])) $this->sRequestedMethod = $_POST['xjxmthd'];
+    }
+
+    /*
+        Function: configure
+    */
+    public function configure($sName, $mValue)
+    {
+        if ('wrapperPrefix' == $sName) {
+            $this->sXajaxPrefix = $mValue;
+        } else if ('scriptDefferal' == $sName) {
+            if (true === $mValue) $this->sDefer = 'defer ';
+            else $this->sDefer = '';
+        } else if ('deferScriptGeneration' == $sName) {
+            if (true === $mValue || false === $mValue)
+                $this->bDeferScriptGeneration = $mValue;
+            else if ('deferred' === $mValue)
+                $this->bDeferScriptGeneration = $mValue;
+        }
+    }
+
+    /*
+        Function: register
+    */
+    public function register($aArgs)
+    {
+        if (1 < count($aArgs)) {
+            $sType = $aArgs[0];
+
+            if (XAJAX_CALLABLE_OBJECT == $sType) {
+                $xco = $aArgs[1];
 
 //SkipDebug
-				if (false === is_object($xco))
-				{
-					trigger_error("To register a callable object, please provide an instance of the desired class.", E_USER_WARNING);
-					return false;
-				}
+                if (false === is_object($xco)) {
+                    trigger_error("To register a callable object, please provide an instance of the desired class.", E_USER_WARNING);
+                    return false;
+                }
 //EndSkipDebug
 
-				if (false === ($xco instanceof xajaxCallableObject))
-					$xco = new xajaxCallableObject($xco);
+                if (false === ($xco instanceof xajaxCallableObject))
+                    $xco = new xajaxCallableObject($xco);
 
-				if (2 < count($aArgs))
-					if (is_array($aArgs[2]))
-						foreach ($aArgs[2] as $sKey => $aValue)
-							foreach ($aValue as $sName => $sValue)
-								$xco->configure($sKey, $sName, $sValue);
+                if (2 < count($aArgs))
+                    if (is_array($aArgs[2]))
+                        foreach ($aArgs[2] as $sKey => $aValue)
+                            foreach ($aValue as $sName => $sValue)
+                                $xco->configure($sKey, $sName, $sValue);
 
-				$this->aCallableObjects[] = $xco;
+                $this->aCallableObjects[] = $xco;
 
-				return $xco->generateRequests($this->sXajaxPrefix);
-			}
-		}
+                return $xco->generateRequests($this->sXajaxPrefix);
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 
 
-	function generateHash()
-	{
-		$sHash = '';
-		foreach(array_keys($this->aCallableObjects) as $sKey)
-			$sHash .= $this->aCallableObjects[$sKey]->getName();
+    function generateHash()
+    {
+        $sHash = '';
+        foreach (array_keys($this->aCallableObjects) as $sKey)
+            $sHash .= $this->aCallableObjects[$sKey]->getName();
 
-		foreach(array_keys($this->aCallableObjects) as $sKey)
-			$sHash .= implode('|',$this->aCallableObjects[$sKey]->getMethods());
+        foreach (array_keys($this->aCallableObjects) as $sKey)
+            $sHash .= implode('|', $this->aCallableObjects[$sKey]->getMethods());
 
-		return md5($sHash);
-	}
+        return md5($sHash);
+    }
 
-	/*
-		Function: generateClientScript
-	*/
-	public function generateClientScript()
-	{
+    /*
+        Function: generateClientScript
+    */
+    public function generateClientScript()
+    {
 
-		if (0 < count($this->aCallableObjects))
-		{
-			foreach(array_keys($this->aCallableObjects) as $sKey)
-				$this->aCallableObjects[$sKey]->generateClientScript($this->sXajaxPrefix);
-		}
-	}
+        if (0 < count($this->aCallableObjects)) {
+            foreach (array_keys($this->aCallableObjects) as $sKey)
+                $this->aCallableObjects[$sKey]->generateClientScript($this->sXajaxPrefix);
+        }
+    }
 
-	/*
-		Function: canProcessRequest
-	*/
-	public function canProcessRequest()
-	{
-		if (NULL == $this->sRequestedClass)
-			return false;
-		if (NULL == $this->sRequestedMethod)
-			return false;
+    /*
+        Function: canProcessRequest
+    */
+    public function canProcessRequest()
+    {
+        if (NULL == $this->sRequestedClass)
+            return false;
+        if (NULL == $this->sRequestedMethod)
+            return false;
 
-		return true;
-	}
+        return true;
+    }
 
-	/*
-		Function: processRequest
-	*/
-	public function processRequest()
-	{
-		if (NULL == $this->sRequestedClass)
-			return false;
-		if (NULL == $this->sRequestedMethod)
-			return false;
+    /*
+        Function: processRequest
+    */
+    public function processRequest()
+    {
+        if (NULL == $this->sRequestedClass)
+            return false;
+        if (NULL == $this->sRequestedMethod)
+            return false;
 
-		$objArgumentManager = xajaxArgumentManager::getInstance();
-		$aArgs = $objArgumentManager->process();
+        $objArgumentManager = xajaxArgumentManager::getInstance();
+        $aArgs = $objArgumentManager->process();
 
-		foreach (array_keys($this->aCallableObjects) as $sKey)
-		{
-			$xco = $this->aCallableObjects[$sKey];
+        foreach (array_keys($this->aCallableObjects) as $sKey) {
+            $xco = $this->aCallableObjects[$sKey];
 
-			if ($xco->isClass($this->sRequestedClass))
-			{
-				if ($xco->hasMethod($this->sRequestedMethod))
-				{
-					$xco->call($this->sRequestedMethod, $aArgs);
-					return true;
-				}
-			}
-		}
+            if ($xco->isClass($this->sRequestedClass)) {
+                if ($xco->hasMethod($this->sRequestedMethod)) {
+                    $xco->call($this->sRequestedMethod, $aArgs);
+                    return true;
+                }
+            }
+        }
 
-		return 'Invalid request for a callable object.';
-	}
+        return 'Invalid request for a callable object.';
+    }
 }
 
 $objPluginManager = xajaxPluginManager::getInstance();

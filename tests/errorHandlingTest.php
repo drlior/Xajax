@@ -52,11 +52,11 @@ $xajax->configure('logFile', 'xajax_error_log.log');
 */
 function myErrorRiddenFunction()
 {
-	$value       = $silly['nuts'];
-	$objResponse = new xajaxResponse();
-	$objResponse->alert("Bad array value: $value");
-	include("file_doesnt_exist.php");
-	return $objResponse;
+    $value = $silly['nuts'];
+    $objResponse = new xajaxResponse();
+    $objResponse->alert("Bad array value: $value");
+    include("file_doesnt_exist.php");
+    return $objResponse;
 }
 
 /*
@@ -82,15 +82,15 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<title>Error Handling Test | xajax Tests</title>
+    <title>Error Handling Test | xajax Tests</title>
 
-	<?php
-	/*
-	- output javascript configuration and reference to xajax
-		javascript library
+    <?php
+    /*
+    - output javascript configuration and reference to xajax
+        javascript library
 */
-	$xajax->printJavascript()
-	?>
+    $xajax->printJavascript()
+    ?>
 </head>
 
 <body>
@@ -99,15 +99,15 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <h1>Error Handling Test</h1>
 
 <form id="testForm1" onsubmit="return false;">
-	<p>
-		<!--
-	Section: Initiate the request
+    <p>
+        <!--
+    Section: Initiate the request
 
-	- use <xajax.request> to send request back to server
+    - use <xajax.request> to send request back to server
 -->
-		<input type="submit"
-			   value="Call Error Ridden Function" onclick="xajax_myErrorRiddenFunction(); return false;" />
-	</p>
+        <input type="submit"
+               value="Call Error Ridden Function" onclick="xajax_myErrorRiddenFunction(); return false;"/>
+    </p>
 </form>
 
 <div id="submittedDiv">

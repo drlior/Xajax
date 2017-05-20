@@ -26,107 +26,102 @@
 
 	This is called when the page is first loaded.
 */
+
 final class xajaxIncludeClientScriptPlugin extends xajaxRequestPlugin
 {
 
 
-	public function xajaxIncludeClientScriptPlugin()
-	{
+    public function xajaxIncludeClientScriptPlugin()
+    {
 
-	}
+    }
 
-	/*
-		Function: configure
-	*/
-	public function configure($sName, $mValue)
-	{
-
-
-	}
-
-	/*
-		Function: generateClientScript
-	*/
-	public function generateClientScript()
-	{
-		if (false === $this->bDeferScriptGeneration)
-		{
-			$this->printJavascriptConfig();
-			$this->printJavascriptInclude();
-		}
-		else if (true === $this->bDeferScriptGeneration)
-		{
-			$this->printJavascriptInclude();
-		}
-		else if ('deferred' == $this->bDeferScriptGeneration)
-		{
-			$this->printJavascriptConfig();
-		}
-	}
-
-	/*
-		Function: getJavascriptConfig
-
-		Generates the xajax settings that will be used by the xajax javascript
-		library when making requests back to the server.
-
-		Returns:
-
-		string - The javascript code necessary to configure the settings on
-			the browser.
-	*/
-	public function getJavascriptConfig()
-	{
-		ob_start();
-		$this->printJavascriptConfig();
-		return ob_get_clean();
-	}
-	
-	/*
-		Function: printJavascriptConfig
-		
-		See <xajaxIncludeClientScriptPlugin::getJavascriptConfig>
-	*/
-	public function printJavascriptConfig()
-	{
+    /*
+        Function: configure
+    */
+    public function configure($sName, $mValue)
+    {
 
 
-	}
+    }
 
-	/*
-		Function: getJavascriptInclude
+    /*
+        Function: generateClientScript
+    */
+    public function generateClientScript()
+    {
+        if (false === $this->bDeferScriptGeneration) {
+            $this->printJavascriptConfig();
+            $this->printJavascriptInclude();
+        } else if (true === $this->bDeferScriptGeneration) {
+            $this->printJavascriptInclude();
+        } else if ('deferred' == $this->bDeferScriptGeneration) {
+            $this->printJavascriptConfig();
+        }
+    }
 
-		Generates SCRIPT tags necessary to load the javascript libraries on
-		the browser.
+    /*
+        Function: getJavascriptConfig
 
-		sJsURI - (string):  The relative or fully qualified PATH that will be
-			used to compose the URI to the specified javascript files.
-		aJsFiles - (array):  List of javascript files to include.
+        Generates the xajax settings that will be used by the xajax javascript
+        library when making requests back to the server.
 
-		Returns:
+        Returns:
 
-		string - The SCRIPT tags that will cause the browser to load the
-			specified files.
-	*/
-	public function getJavascriptInclude()
-	{
-		ob_start();
-		$this->printJavascriptInclude();
-		return ob_get_clean();
-	}
-	
-	/*
-		Function: printJavascriptInclude
-		
-		See <xajaxIncludeClientScriptPlugin::getJavascriptInclude>
-	*/
-	public function printJavascriptInclude()
-	{
+        string - The javascript code necessary to configure the settings on
+            the browser.
+    */
+    public function getJavascriptConfig()
+    {
+        ob_start();
+        $this->printJavascriptConfig();
+        return ob_get_clean();
+    }
 
-			
+    /*
+        Function: printJavascriptConfig
+        
+        See <xajaxIncludeClientScriptPlugin::getJavascriptConfig>
+    */
+    public function printJavascriptConfig()
+    {
 
-	}
-	
+
+    }
+
+    /*
+        Function: getJavascriptInclude
+
+        Generates SCRIPT tags necessary to load the javascript libraries on
+        the browser.
+
+        sJsURI - (string):  The relative or fully qualified PATH that will be
+            used to compose the URI to the specified javascript files.
+        aJsFiles - (array):  List of javascript files to include.
+
+        Returns:
+
+        string - The SCRIPT tags that will cause the browser to load the
+            specified files.
+    */
+    public function getJavascriptInclude()
+    {
+        ob_start();
+        $this->printJavascriptInclude();
+        return ob_get_clean();
+    }
+
+    /*
+        Function: printJavascriptInclude
+        
+        See <xajaxIncludeClientScriptPlugin::getJavascriptInclude>
+    */
+    public function printJavascriptInclude()
+    {
+
+
+    }
+
 
 }
 

@@ -20,20 +20,20 @@ require_once("../xajax_core/xajax.inc.php");
 
 function showOutput()
 {
-	$testResponse = new xajaxResponse();
-	$testResponse->alert("Hello");
+    $testResponse = new xajaxResponse();
+    $testResponse->alert("Hello");
 
-	$testResponse2 = new xajaxResponse();
-	$testResponse2->appendResponse($testResponse);
-	$testResponse2->replace("this", "is", "a", "replacement]]>");
-	$testResponseOutput = htmlspecialchars($testResponse2->getOutput());
+    $testResponse2 = new xajaxResponse();
+    $testResponse2->appendResponse($testResponse);
+    $testResponse2->replace("this", "is", "a", "replacement]]>");
+    $testResponseOutput = htmlspecialchars($testResponse2->getOutput());
 
-	$objResponse = new xajaxResponse();
-	$objResponse->assign("submittedDiv", "innerHTML", $testResponseOutput);
-	$aValues   = array();
-	$aValues[] = "Yippie";
-	$objResponse->setReturnValue($aValues);
-	return $objResponse;
+    $objResponse = new xajaxResponse();
+    $objResponse->assign("submittedDiv", "innerHTML", $testResponseOutput);
+    $aValues = array();
+    $aValues[] = "Yippie";
+    $objResponse->setReturnValue($aValues);
+    return $objResponse;
 }
 
 $xajax = new xajax();
@@ -48,9 +48,9 @@ $xajax->processRequest();
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<title>xajaxResponse Test | xajax Tests</title>
+    <title>xajaxResponse Test | xajax Tests</title>
 
-	<?php $xajax->printJavascript("../") ?>
+    <?php $xajax->printJavascript("../") ?>
 </head>
 
 <body>
@@ -59,10 +59,10 @@ $xajax->processRequest();
 <h1>xajaxResponse Test</h1>
 
 <form id="testForm1" onsubmit="return false;">
-	<p>
-		<input type="submit" value="Show Response"
-			   onclick="alert(xajax.request({xjxfun:'showOutput'}, {mode:'synchronous'})); return false;" />
-	</p>
+    <p>
+        <input type="submit" value="Show Response"
+               onclick="alert(xajax.request({xjxfun:'showOutput'}, {mode:'synchronous'})); return false;"/>
+    </p>
 </form>
 
 <div id="submittedDiv">

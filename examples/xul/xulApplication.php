@@ -30,11 +30,12 @@
 require_once("../../xajax_core/xajax.inc.php");
 $xajax = new xajax();
 
-function test() {
-        $objResponse = new xajaxResponse();
-        $objResponse->alert("hallo");
-        $objResponse->assign('testButton','label','Success!');
-        return $objResponse;
+function test()
+{
+    $objResponse = new xajaxResponse();
+    $objResponse->alert("hallo");
+    $objResponse->assign('testButton', 'label', 'Success!');
+    return $objResponse;
 }
 
 $xajax->registerFunction("test");

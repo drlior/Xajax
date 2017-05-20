@@ -4,9 +4,9 @@ require_once("../xajax_core/xajax.inc.php");
 
 function includeScript($sFilename)
 {
-	$objResponse = new xajaxResponse();
-	$objResponse->includeScript($sFilename);
-	return $objResponse;
+    $objResponse = new xajaxResponse();
+    $objResponse->includeScript($sFilename);
+    return $objResponse;
 }
 
 $xajax = new xajax();
@@ -17,21 +17,21 @@ $xajax->configure('javascript URI', '../');
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Include External Javascript Test | xajax Tests</title>
-	<?php $xajax->printJavascript("../") ?>
-	<script type="text/javascript">
-		function externalFunction() {
-			try {
-				myFunction();
-			}
-			catch (e) {
-				alert(e);
-			}
-		}
-	</script>
+    <title>Include External Javascript Test | xajax Tests</title>
+    <?php $xajax->printJavascript("../") ?>
+    <script type="text/javascript">
+        function externalFunction() {
+            try {
+                myFunction();
+            }
+            catch (e) {
+                alert(e);
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -44,7 +44,7 @@ $xajax->configure('javascript URI', '../');
 onclick="externalFunction()">Click Me</div>
 
 <form id="testForm1" onsubmit="return false;">
-	<input type="submit" value="Include myFunction.js"
-		   onclick="xajax_includeScript('myExternalFunction.js'); return false;" />
+    <input type="submit" value="Include myFunction.js"
+           onclick="xajax_includeScript('myExternalFunction.js'); return false;"/>
 </body>
 </html>

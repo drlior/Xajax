@@ -33,28 +33,29 @@
 	- include <xajax.inc.php>
 	- instantiate main <xajax> object
 */
-	require_once("../../xajax_core/xajax.inc.php");
-	$xajax = new xajax();
+require_once("../../xajax_core/xajax.inc.php");
+$xajax = new xajax();
 
-	/*
-		Function: test
-		
-		alert 'hallo', then update the testButton's label to 'Success'
-	*/
-	function test() {
-			$objResponse = new xajaxResponse();
-			$objResponse->alert("hallo");
-			$objResponse->assign('testButton','label','Success!');
-			return $objResponse;
-	}
-	
-	/*
-		- Register the function <test>
-	*/
-	$xajax->register(XAJAX_FUNCTION,"test");
-	
-	/*
-		Section: processRequest
-	*/
-	$xajax->processRequest();
+/*
+    Function: test
+    
+    alert 'hallo', then update the testButton's label to 'Success'
+*/
+function test()
+{
+    $objResponse = new xajaxResponse();
+    $objResponse->alert("hallo");
+    $objResponse->assign('testButton', 'label', 'Success!');
+    return $objResponse;
+}
+
+/*
+    - Register the function <test>
+*/
+$xajax->register(XAJAX_FUNCTION, "test");
+
+/*
+    Section: processRequest
+*/
+$xajax->processRequest();
 ?>

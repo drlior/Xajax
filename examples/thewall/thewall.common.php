@@ -26,10 +26,10 @@
 	@license http://www.xajaxproject.org/bsd_license.txt BSD License
 */
 
-require_once ("../../xajax_core/xajax.inc.php");
+require_once("../../xajax_core/xajax.inc.php");
 
 $xajax = new xajax("thewall.server.php");
-$xajax->configure('javascript URI','../../');
-$xajax->register(XAJAX_FUNCTION,"scribble");
-$xajax->register(XAJAX_FUNCTION,"updateWall");
+$xajax->configure('javascript URI', '../../');
+$xajax->register(XAJAX_FUNCTION, "scribble");
+$xajax->register(XAJAX_FUNCTION, "updateWall");
 ?>

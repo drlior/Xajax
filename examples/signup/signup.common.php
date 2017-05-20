@@ -25,11 +25,11 @@
 	@copyright Copyright (c) 2008-2009 by Joseph Woolley, Steffen Konerow, Jared White  & J. Max Wilson
 	@license http://www.xajaxproject.org/bsd_license.txt BSD License
 */
-require_once ("../../xajax_core/xajax.inc.php");
+require_once("../../xajax_core/xajax.inc.php");
 
 session_start();
 
 $xajax = new xajax("signup.server.php");
-$xajax->configure('javascript URI','../../');
-$xajax->register(XAJAX_FUNCTION,"processForm");
+$xajax->configure('javascript URI', '../../');
+$xajax->register(XAJAX_FUNCTION, "processForm");
 ?>

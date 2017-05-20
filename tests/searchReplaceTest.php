@@ -21,9 +21,9 @@ require_once("../xajax_core/xajax.inc.php");
 
 function replace($aForm)
 {
-	$objResponse = new xajaxResponse();
-	$objResponse->replace('content', "innerHTML", $aForm['search'], $aForm['replace']);
-	return $objResponse;
+    $objResponse = new xajaxResponse();
+    $objResponse->replace('content', "innerHTML", $aForm['search'], $aForm['replace']);
+    return $objResponse;
 }
 
 $xajax = new xajax();
@@ -36,9 +36,9 @@ $xajax->processRequest();
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<title>Search and Replace Test | xajax Tests</title>
+    <title>Search and Replace Test | xajax Tests</title>
 
-	<?php $xajax->printJavascript("../") ?>
+    <?php $xajax->printJavascript("../") ?>
 </head>
 
 <body>
@@ -58,14 +58,14 @@ Phasellus ligula arcu, rutrum at, pellentesque et, varius feugiat, velit. Etiam 
 vulputate eget, dignissim non, lectus. Nam at metus. Aenean mollis ligula viverra ipsum.    </div>
 
 <form id="testForm1" onsubmit="return false;">
-	<div>
-		Search:<input id="search" name="search" value="" />
-	</div>
-	<div>
-		Replace:<input id="replace" name="replace" value="" />
-	</div>
-	<div><input type="submit" value="Search & Replace"
-				onclick="xajax_replace(xajax.getFormValues('testForm1')); return false;" /></div>
+    <div>
+        Search:<input id="search" name="search" value=""/>
+    </div>
+    <div>
+        Replace:<input id="replace" name="replace" value=""/>
+    </div>
+    <div><input type="submit" value="Search & Replace"
+                onclick="xajax_replace(xajax.getFormValues('testForm1')); return false;"/></div>
 </form>
 
 <div id="submittedDiv"></div>

@@ -3,9 +3,9 @@ require_once("../xajax_core/xajax.inc.php");
 
 function redirect()
 {
-	$objResponse = new xajaxResponse();
-	$objResponse->redirect("http://www.xajaxproject.org");
-	return $objResponse;
+    $objResponse = new xajaxResponse();
+    $objResponse->redirect("http://www.xajaxproject.org");
+    return $objResponse;
 }
 
 $xajax = new xajax();
@@ -17,12 +17,12 @@ $xajax->configure('javascript URI', '../');
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Redirect Test | xajax Tests</title>
+    <title>Redirect Test | xajax Tests</title>
 
-	<?php $xajax->printJavascript("../") ?>
+    <?php $xajax->printJavascript("../") ?>
 </head>
 
 <body>
@@ -31,9 +31,9 @@ $xajax->configure('javascript URI', '../');
 <h1>Redirect Test</h1>
 
 <form id="testForm1" onsubmit="return false;">
-	<p>
-		<input type="submit" value="Test xajax redirect" onclick="xajax_redirect(); return false;" />
-	</p>
+    <p>
+        <input type="submit" value="Test xajax redirect" onclick="xajax_redirect(); return false;"/>
+    </p>
 </form>
 
 <div id="submittedDiv">
