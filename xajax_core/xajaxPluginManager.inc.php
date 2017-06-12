@@ -365,8 +365,8 @@ final class xajaxPluginManager
         $aKeys = array_keys($this->aRegistrars);
         sort($aKeys);
         foreach ($aKeys as $sKey) {
-            $objPlugin = $this->aRegistrars[$sKey];
-            $mResult = $objPlugin->register($aArgs);
+            $objPlugin =& $this->aRegistrars[$sKey];
+            $mResult =& $objPlugin->register($aArgs);
             if ($mResult instanceof xajaxRequest)
                 return $mResult;
             if (is_array($mResult))
